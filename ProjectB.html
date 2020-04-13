@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Physical Therapist</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <!-- Brand/logo -->
+  <a class="navbar-brand" href="#">Fresno</a>
+</nav>
+
+<div class="container">
+  <h3>Welcome to Physical Therapy</h3>
+  <h4>Patient's Symptom: </h4>
+  <div class="dropdown">
+    <button class="btn btn-default" type="button" data-toggle="dropdown">Body Part
+    <span class="caret"></span></button>
+    
+    <ul class="dropdown-menu">
+      <li>
+        <a class="test" tabindex="-1" >Upper Body <span class="caret"></span></a>
+        
+          <ul  class="dropdown-menu">
+          <li  value = "1" onclick=" pick(value)"><a  tabindex="-1" href="#">Neck</a></li>
+          <li  value = "2" onclick=" pick(value)"><a tabindex="-1" href="#">Shoulder</a></li>
+          <li  value = "3" onclick=" pick(value)"><a tabindex="-1" href="#">Arm</a></li>
+          <li  value = "4" onclick=" pick(value)"><a tabindex="-1" href="#">Back</a></li>
+          <li  value = "5" onclick=" pick(value)"><a tabindex="-1" href="#">Chest</a></li>
+          <li  value = "6" onclick=" pick(value)"><a tabindex="-1" href="#">Joints</a></li>
+
+        </ul>
+        
+      </li>
+      <li>
+        <a class="test" tabindex="-1" >Lower Body <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li  value = "1" onclick=" pick1(value)"><a  tabindex="-1" href="#">Knee</a></li>
+          <li  value = "2" onclick=" pick1(value)"><a tabindex="-1" href="#">Feet</a></li>
+          <li  value = "3" onclick=" pick1(value)"><a tabindex="-1" href="#">Calves</a></li>
+          <li  value = "4" onclick=" pick1(value)"><a tabindex="-1" href="#">Thigh</a></li>
+          <li  value = "5" onclick=" pick1(value)"><a tabindex="-1" href="#">Bottom</a></li>
+          <li  value = "6" onclick=" pick(value)"><a tabindex="-1" href="#">Joints</a></li>
+
+        </ul>
+      </li>
+    </ul>
+    <p >Selected Part: <span id="bodyPart"></span></p>
+<hr>
+    <div class="dropdown">
+    <button class="btn btn-default" type="button" id="menu1" data-toggle="dropdown">Issue
+    <span class="caret"></span></button>
+    <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+      <li value = "1" onclick="pain(value)"><a  tabindex="-1" >Tension</a></li>
+      <li value = "2" onclick="pain(value)"><a  tabindex="-1" >Inflammation</a></li>
+    </ul>
+  </div>
+
+  </div>
+  
+  <p >Type of Pain: <span id="painT"></span></p>
+
+  <hr>
+  <button class="btn btn-default" type="button" id="menu1" onclick="connecting()">Connect Device</button>
+  
+
+  <button class="btn btn-default" type="button" id="menu1" onclick="scanning()">Scan</button>
+  <p id="connect" style="display:none;"></p> 
+  <p id="scan" style="display:none;"></p> 
+  <p id="cond" style="display:none;"></p> 
+  <p id="requi" style="display:none;"></p> 
+
+
+</div>
+
+
+<script >
+  
+  $(document).ready(function(){
+  $('.dropdown a.test').on("click", function(e){
+    $(this).next('ul').toggle();
+    e.stopPropagation();
+    e.preventDefault();
+  });
+});
+  function pick(v){
+    if(v ==1)
+      document.getElementById("bodyPart").innerHTML = "Neck";
+    else if(v ==2)
+      document.getElementById("bodyPart").innerHTML = "Shoulder";
+     else if(v ==3)
+      document.getElementById("bodyPart").innerHTML = "Arm";
+     else if(v ==4)
+      document.getElementById("bodyPart").innerHTML = "Back";
+     else if(v ==5)
+      document.getElementById("bodyPart").innerHTML = "Chest";
+     else if(v ==6)
+      document.getElementById("bodyPart").innerHTML = "Joints";
+  }
+  function pick1(v){
+    if(v ==1)
+      document.getElementById("bodyPart").innerHTML = "Knee";
+    else if(v ==2)
+      document.getElementById("bodyPart").innerHTML = "Feet";
+     else if(v ==3)
+      document.getElementById("bodyPart").innerHTML = "Calves";
+     else if(v ==4)
+      document.getElementById("bodyPart").innerHTML = "Thigh";
+     else if(v ==5)
+      document.getElementById("bodyPart").innerHTML = "Bottom";
+    else if(v ==6)
+      document.getElementById("bodyPart").innerHTML = "Joints";
+  }
+  function pain(v){
+    if(v ==1)
+      document.getElementById("painT").innerHTML = "Tension";
+    else if(v ==2)
+      document.getElementById("painT").innerHTML = "Inflammation";
+  }
+  function scanning(){
+    var delayInMilliseconds1 = 2000; //delay time in second
+    var delayInMilliseconds2 = 4000; 
+    var delayInMilliseconds3 = 6000; 
+    document.getElementById("scan").style.display = "block";
+    document.getElementById("scan").innerHTML = "Sending Signal";
+
+     setTimeout(function() {
+        document.getElementById("scan").innerHTML = "Recieving Data";
+    }, delayInMilliseconds1);
+
+     setTimeout(function() {
+        document.getElementById("scan").innerHTML = "Calculating Result";
+    }, delayInMilliseconds2);
+
+    setTimeout(function() {
+      //your code to be executed 
+      var e = document.getElementById("painT").innerHTML;
+      var v = document.getElementById("bodyPart").innerHTML;
+      var n = Math.ceil(Math.random() *100);
+       document.getElementById("scan").innerHTML =v + " " + e + "'s result "+ n +" %";
+
+       document.getElementById("cond").style.display = "block";
+       var c = n <60 ? "Mild" : "Critical";
+       document.getElementById("cond").innerHTML = "Condition is " + c;
+
+       document.getElementById("requi").style.display = "block";
+       var r = c =="Mild" ? "Further Test Not Required" : "Further Test Required";
+       document.getElementById("requi").innerHTML = r;
+
+    }, delayInMilliseconds3);
+
+  }
+  
+  function connecting(){
+    var delayInMilliseconds = 1000; //delay time in second
+    document.getElementById("connect").style.display = "block";
+    document.getElementById("connect").innerHTML = "Connecting";
+    setTimeout(function() {
+      //your code to be executed 
+       document.getElementById("connect").innerHTML = "Device Connected";
+    }, delayInMilliseconds);
+  }
+</script>
+</body>
+</html>
